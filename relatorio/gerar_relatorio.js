@@ -87,23 +87,24 @@ function TABELA(texto, cabecalho, linhas, larguras, fonte = FONTE_DADOS, junta =
 }
 
 // ---------- conteúdo ----------
-const AUTORES = ["[[Erik Su]]", "[[Gustavo Blasbalg]]", "Rafael Eduardo Yosano Barros Fernandez", "[[Roni Fogelman]]"];
+const AUTORES = ["Erik Su", "Gustavo Blasbalg", "Rafael Eduardo Yosano Barros Fernandez", "Roni Fogelman"];
 const TITULO = "Despacho de unidades de suporte básico e avançado no atendimento pré-hospitalar: quando preservar a unidade avançada?";
 const SUBTITULO = "um estudo por simulação calibrado com dados operacionais de São Paulo";
 
 const capa = [
-  PC("**UNIVERSIDADE DE SÃO PAULO**"), PC("**ESCOLA POLITÉCNICA**"), ...VAZIO(4),
+  PC("**UNIVERSIDADE DE SÃO PAULO (USP)**"), PC("**ESCOLA POLITÉCNICA (EP)**"), ...VAZIO(4),
   ...AUTORES.map((a) => PC(a)), ...VAZIO(4),
   PC(`**${TITULO}**`), PC(SUBTITULO), ...VAZIO(6),
   PC("São Paulo"), PC("2026"),
 ];
 const rosto = [
   new Paragraph({ children: [new PageBreak()] }),
-  ...AUTORES.map((a) => PC(a)), ...VAZIO(4),
+  PC("**UNIVERSIDADE DE SÃO PAULO (USP)**"), PC("**ESCOLA POLITÉCNICA (EP)**"), ...VAZIO(3),
+  ...AUTORES.map((a) => PC(a)), ...VAZIO(3),
   PC(`**${TITULO}**`), PC(SUBTITULO), ...VAZIO(1), PC("**Versão Preliminar**"), ...VAZIO(3),
   new Paragraph({ indent: { left: 4535 }, alignment: AlignmentType.JUSTIFIED, spacing: { line: 240 }, children: runs("Trabalho de Formatura do Curso de Engenharia Civil apresentado à Escola Politécnica da Universidade de São Paulo para obtenção do título de Bacharel em Engenharia Civil.") }),
   ...VAZIO(1),
-  new Paragraph({ indent: { left: 4535 }, spacing: { line: 240 }, children: runs("Orientador(a): [[Prof(a). Dr(a). NOME DO(A) ORIENTADOR(A)]]") }),
+  new Paragraph({ indent: { left: 4535 }, spacing: { line: 240 }, children: runs("Orientador: Prof. Dr. Cláudio Barbieri da Cunha") }),
   ...VAZIO(5), PC("São Paulo"), PC("2026"),
 ];
 
@@ -199,7 +200,7 @@ const cap3 = [
   H2("3.5 Simulação de sistemas de atendimento sob demanda"),
   P("Fora do contexto de emergência, Costa, Cunha e Arbex (2021) desenvolveram um modelo de simulação-otimização para avaliar um serviço de transporte sob demanda como alimentador de uma estação de metrô em São Paulo. A estrutura do modelo, adaptada de Häll, Högberg e Lundgren (2012 apud COSTA; CUNHA; ARBEX, 2021), tem quatro componentes: um gestor de entradas (demanda, frota, rede viária e parâmetros de nível de serviço), um controle da simulação (relógio, eventos e posição dos veículos), um gestor de solicitações, acionado a cada novo pedido para escolher o veículo que o atenderá, e um gestor de saídas. A analogia com o despacho de ambulâncias é direta: cada chamado chega de forma imprevisível, precisa ser atribuído imediatamente a um veículo e essa atribuição altera a disponibilidade da frota para os pedidos seguintes. Os autores avaliaram cenários de oferta e demanda medindo nível de serviço e uso da frota, o mesmo desenho experimental proposto aqui."),
   H2("3.6 Métricas de desempenho"),
-  P("A métrica mais usada na prática é a fração de chamados atendidos dentro de um tempo-limite (por exemplo, 8 ou 10 minutos). McLay e Mayorga (2010) mostraram que a escolha da métrica altera a política ótima e defenderam medidas baseadas em sobrevida. Para PCR, De Maio et al. (2003) ajustaram por regressão logística uma função de sobrevida em relação ao intervalo até a desfibrilação, que pode ser usada para converter tempos de resposta simulados em sobrevida esperada. Neste trabalho, adotaremos tanto métricas de tempo, mais fáceis de comunicar a gestores, quanto uma métrica de sobrevida para o subconjunto de chamados de PCR."),
+  P("A métrica mais usada na prática é a fração de chamados atendidos dentro de um tempo-limite (por exemplo, 8 ou 10 minutos). McLay e Mayorga (2010) mostraram que a escolha da métrica altera a política ótima e defenderam medidas baseadas em sobrevida. Para PCR, De Maio et al. (2003) ajustaram por regressão logística uma função de sobrevida em relação ao intervalo até a desfibrilação, que pode ser usada para converter tempos de resposta simulados em sobrevida esperada. Há, porém, uma ressalva importante para este trabalho. A curva de De Maio et al. (2003) mede o tempo até a desfibrilação, e a USB também dispõe de desfibrilador externo automático; na PCR, portanto, o fator decisivo é a chegada da primeira viatura, e não a da USA. Além disso, o estudo OPALS, que acrescentou suporte avançado a um sistema de desfibrilação rápida em 17 cidades canadenses, não encontrou aumento da sobrevida até a alta hospitalar (5,0% contra 5,1%), embora tenha observado mais retorno da circulação espontânea e mais internações (STIELL et al., 2004). Por isso, este trabalho não usará a sobrevida em PCR para medir o valor de preservar a USA: a métrica adotada será o tempo até a chegada de suporte avançado nos chamados em que há indicação de benefício desse suporte, a ser definida com profissionais de APH, ao lado das métricas de tempo, mais fáceis de comunicar a gestores."),
   H2("3.7 Síntese e lacuna"),
   P("A Tabela 1 resume os trabalhos centrais. Em conjunto, eles sustentam que a regra do mais próximo pode ser melhorada quando há prioridades e tipos de unidade distintos, mas as políticas ótimas de MDP são difíceis de comunicar e de calibrar sem dados detalhados. A contribuição pretendida por este TCC é mais modesta e aplicada: estimar, para um sistema urbano brasileiro calibrado com dados reais, um limiar de decisão interpretável (X*) e mostrar como ele varia com a carga e com a composição da frota. No contexto nacional, ela preenche a simplificação registrada por Andrade (2012), que tratou um único tipo de viatura por falta de distinção na triagem."),
   ...TABELA("Síntese dos trabalhos centrais da revisão", ["Trabalho", "Problema", "Método", "Métrica principal"], [
@@ -215,7 +216,7 @@ const cap3 = [
     ["Jagtenberg, Bhulai e van der Mei (2017)", "Despacho dinâmico", "MDP + heurística", "Fração de atrasos"],
     ["Park e Lee (2019)", "Despacho em 2 níveis com erro de triagem", "ADP + simulação", "Risco ao paciente"],
     ["Costa, Cunha e Arbex (2021)", "Transporte sob demanda em São Paulo", "Simulação-otimização", "Nível de serviço, frota"],
-    ["**Este trabalho**", "**Limiar USB x USA**", "**Simulação (SED)**", "**Tempo e sobrevida**"],
+    ["**Este trabalho**", "**Limiar USB x USA**", "**Simulação (SED)**", "**Tempo até suporte avançado**"],
   ], [2700, 2500, 2000, 1871], "Fonte: elaborado pelos autores."),
 ];
 
@@ -273,7 +274,7 @@ const cap4 = [
     "**M1:** fração dos chamados de gravidade alta com chegada da USA em até T minutos (T = 10 min, com sensibilidade para 8 e 15 min);",
     "**M2:** tempo médio de resposta da primeira viatura, considerando todos os chamados;",
     "**M3:** tempo de resposta da USA em chamados graves (média e percentil 90);",
-    "**M4:** sobrevida esperada nos chamados de PCR, a partir de uma função de sobrevida da literatura (DE MAIO et al., 2003);",
+    "**M4:** tempo até a chegada de suporte avançado nos chamados em que há indicação de benefício desse suporte, a ser definida com profissionais de APH (ver seção 3.6);",
     "**M5:** utilização de cada tipo de viatura.",
   ]),
   H2("4.9 Cenários, experimentos e validação"),
@@ -343,7 +344,7 @@ const cap6 = [
   P("Ao final do TF2, espera-se obter:"),
   ...ALINEAS([
     "**curvas de desempenho em função de X:** para cada cenário de carga e frota, as métricas M1 a M4 em função do limiar X, com intervalos de confiança, evidenciando o *trade-off* entre o tempo de resposta geral (que piora com X maior) e a disponibilidade da USA para chamados graves (que melhora);",
-    "**limiar recomendado X* por cenário:** o valor de X que maximiza a sobrevida esperada (M4) ou que atinge uma meta de M1 com a menor perda em M2;",
+    "**limiar recomendado X* por cenário:** o valor de X que minimiza o tempo até a chegada de suporte avançado nos chamados em que ele é indicado (M4) ou que atinge uma meta de M1 com a menor perda em M2;",
     "**mapa de decisão:** uma tabela simples, legível por gestores, indicando a partir de que nível de utilização vale a pena adotar a política de limiar e com qual X;",
     "**teste das hipóteses H1 a H3**, em especial a relação entre carga do sistema e valor de X*, e o efeito do erro de triagem;",
     "**simulador documentado e reprodutível**, disponível no repositório do trabalho, que possa ser reaplicado a outros serviços, como o SAMU, caso dados semelhantes sejam obtidos.",
@@ -390,6 +391,7 @@ const REFS = [
   "MCLAY, L. A.; MAYORGA, M. E. Evaluating emergency medical service performance measures. **Health Care Management Science**, v. 13, n. 2, p. 124-136, 2010. DOI: 10.1007/s10729-009-9115-x.",
   "MCLAY, L. A.; MAYORGA, M. E. A model for optimally dispatching ambulances to emergency calls with classification errors in patient priorities. **IIE Transactions**, v. 45, n. 1, p. 1-24, 2013. DOI: 10.1080/0740817X.2012.665200.",
   "PARK, S. H.; LEE, Y. H. Two-tiered ambulance dispatch and redeployment considering patient severity classification errors. **Journal of Healthcare Engineering**, v. 2019, 6031789, 2019. DOI: 10.1155/2019/6031789.",
+  "STIELL, I. G. et al. Advanced cardiac life support in out-of-hospital cardiac arrest. **New England Journal of Medicine**, v. 351, n. 7, p. 647-656, 2004.",
   "SUDTACHAT, K.; MAYORGA, M. E.; MCLAY, L. A. Recommendations for dispatching emergency vehicles under multitiered response via simulation. **International Transactions in Operational Research**, v. 21, n. 4, p. 581-617, 2014. DOI: 10.1111/itor.12083.",
   "TAKEDA, R. A.; WIDMER, J. A.; MORABITO, R. Analysis of ambulance decentralization in an urban emergency medical service using the hypercube queueing model. **Computers & Operations Research**, v. 34, n. 3, p. 727-741, 2007.",
   "TOREGAS, C.; SWAIN, R.; REVELLE, C.; BERGMAN, L. The location of emergency service facilities. **Operations Research**, v. 19, n. 6, p. 1363-1373, 1971.",

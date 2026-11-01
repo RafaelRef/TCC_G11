@@ -26,6 +26,7 @@ ou no próprio PDF. Os artigos indicados pelo orientador ficam em artigos/ (só 
 | McLay e Mayorga (2010), HCMS 13(2):124-136 | 10.1007/s10729-009-9115-x | Escolha da métrica muda a política |
 | McLay e Mayorga (2013), IIE Transactions 45(1):1-24 | 10.1080/0740817X.2012.665200 | Erro de classificação na triagem |
 | Park e Lee (2019), J Healthcare Eng 2019:6031789 | 10.1155/2019/6031789 | Despacho em 2 níveis com erro de triagem |
+| Stiell et al. (2004), NEJM 351(7):647-656 | PubMed 15306666 | OPALS: suporte avançado não aumentou sobrevida em PCR; motivo da troca da métrica M4 |
 | Sudtachat, Mayorga e McLay (2014), ITOR 21(4):581-617 | 10.1111/itor.12083 | Despacho com USB e USA via simulação (mais próximo do nosso problema) |
 | Takeda, Widmer e Morabito (2007), C&OR 34(3):727-741 | (iaorifors.com/paper/56520) | Hipercubo no SAMU-Campinas |
 | Toregas et al. (1971), OR 19(6):1363-1373 | 10.1287/opre.19.6.1363 | Cobertura de conjuntos |
