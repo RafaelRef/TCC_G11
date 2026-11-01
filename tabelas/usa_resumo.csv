@@ -1,0 +1,11 @@
+indicador,valor
+Período analisado (h),2413.9
+Empenhos efetivos da USA,79.0
+  dos quais com ocupação imputada,60.0
+Ocupação mediana observada da USA (min),68.2
+Taxa de empenho da USA (por hora),0.0327
+Intensidade de tráfego rho = lambda x E[S],0.0386
+"P(USA ocupada) Erlang B, 1 servidor",0.0372
+Chamados com USA e USB em cena,44.0
+  USA chegou antes (%),31.8
+  diferença mediana USA-USB (min),6.5

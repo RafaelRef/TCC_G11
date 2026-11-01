@@ -1,0 +1,10 @@
+# Dados operacionais da Hatzalá: NÃO versionar (repositório público)
+dados/brutos/*
+dados/processados/*
+!dados/brutos/.gitkeep
+!dados/processados/.gitkeep
+
+__pycache__/
+*.pyc
+.DS_Store
+~$*.docx

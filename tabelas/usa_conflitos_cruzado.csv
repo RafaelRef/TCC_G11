@@ -1,0 +1,5 @@
+gravidade,Alta,Moderada,Baixa,Indeterminada
+Alta,2,2,4,0
+Moderada,0,0,1,2
+Baixa,2,2,0,1
+Indeterminada,1,0,0,0

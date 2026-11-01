@@ -1,0 +1,10 @@
+parametro,valor
+"n (USB, linha reta)",306.0
+intercepto a (min),5.089
+inclinação b (min/km),0.812
+R2,0.119
+velocidade mediana em linha reta (km/h),14.981
+"n (GPS, distância por rota)",25.0
+intercepto GPS (min),1.969
+inclinação GPS (min/km),1.36
+R2 GPS,0.325

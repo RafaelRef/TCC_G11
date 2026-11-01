@@ -1,0 +1,9 @@
+,tipo_vtr,n,media,p25,mediana,p75,p90
+Preparo (acionamento-saída),USA,24.0,3.5,0.6,0.8,2.0,8.3
+Preparo (acionamento-saída),USB,310.0,1.9,0.4,1.0,2.9,4.6
+Deslocamento (saída-cena),USA,24.0,10.1,5.1,7.6,10.4,14.6
+Deslocamento (saída-cena),USB,310.0,7.2,3.8,6.0,8.9,12.7
+Resposta (acionamento-cena),USA,24.0,13.5,7.1,9.4,13.0,26.3
+Resposta (acionamento-cena),USB,310.0,9.1,5.5,7.8,11.1,15.7
+Ocupação (acionamento-liberação),USA,19.0,78.9,53.2,68.2,92.2,116.0
+Ocupação (acionamento-liberação),USB,370.0,73.0,49.6,65.4,85.9,125.8

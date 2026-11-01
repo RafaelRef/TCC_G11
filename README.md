@@ -1,0 +1,50 @@
+# TCC G11: despacho de unidades de suporte básico e avançado no APH
+
+Trabalho de Formatura em Engenharia Civil, Escola Politécnica da USP (2026).
+
+**Pergunta de pesquisa.** Em sistemas de atendimento pré-hospitalar com frota mista de unidades de
+suporte básico (USB) e avançado (USA), em que condições, definidas pela gravidade presumida da
+ocorrência e pela diferença de tempo de resposta entre as unidades disponíveis, é preferível
+despachar uma USB e preservar a USA para ocorrências graves subsequentes?
+
+Os dados operacionais da Hatzalá São Paulo (jul a out/2026) são usados para **calibrar** um modelo
+genérico de simulação, não para avaliar a operação da Hatzalá.
+
+## Estrutura
+
+```
+analise/           scripts Python (rodar na ordem numérica)
+  comum.py         caminhos, paleta, classificação de gravidade
+  01_limpeza.py    padronização e regras de qualidade (R1 a R5)
+  02_descritiva.py demanda, gravidade e tempos de atendimento
+  03_mapa.py       trilateração das bases e mapa das ocorrências
+  04_usa_conflitos.py  uso da USA, conflitos e Erlang B
+dados/brutos/      planilha original (NÃO versionada)
+dados/processados/ base limpa (NÃO versionada)
+figuras/           figuras do relatório (PNG, 300 dpi)
+tabelas/           tabelas agregadas (CSV)
+relatorio/         texto preliminar (.docx) e script que o gera
+referencias/       lista de referências verificadas
+```
+
+## Como reproduzir
+
+```bash
+pip install -r requirements.txt
+# coloque a planilha em dados/brutos/deslocamentos-vtr-hatzala-sp.xlsx
+python analise/01_limpeza.py
+python analise/02_descritiva.py
+python analise/03_mapa.py
+python analise/04_usa_conflitos.py
+```
+
+## Sobre os dados
+
+A planilha da Hatzalá **não está neste repositório** (o repositório é público). Ela já vem
+sanitizada (sem nomes, telefones nem número da residência; coordenadas arredondadas a ~100 m),
+mas continua sendo dado operacional de um parceiro e só deve ser compartilhada com autorização.
+As tabelas e figuras versionadas são apenas agregados.
+
+## Grupo
+
+Erik Su, Gustavo Blasbalg, Rafael Fernandez e Roni Fogelman.

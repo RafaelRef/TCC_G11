@@ -1,0 +1,14 @@
+indicador,valor
+Acionamentos na base original,539
+Chamados na base original,404
+Acionamentos de teste removidos (R1),6
+Acionamentos após R1,533
+Chamados após R1,401
+Acionamentos fora da área de estudo (R2),5
+Acionamentos com chegada à cena registrada,434
+"Deslocamento < 0,5 min (registro tardio, R3)",90
+Deslocamento > 60 min (R3),4
+Preparo > 30 min (R4),33
+Acionamentos com tempo de resposta válido,334
+Acionamentos com tempo de ocupação válido (R5),389
+"Acionamentos com distância por rota (GPS, a partir de set/2026)",60

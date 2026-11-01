@@ -1,0 +1,89 @@
+"""Etapa 3: localização aproximada das bases e mapa das ocorrências.
+
+As coordenadas das bases não constam da planilha (só o endereço). Elas são
+estimadas por trilateração: para cada base, minimiza-se o erro entre a
+distância em linha reta informada (base -> ocorrência) e a distância
+haversine calculada até as coordenadas das ocorrências.
+
+Saídas: tabelas/bases_estimadas.csv, figuras/fig_mapa_ocorrencias.png
+"""
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+from scipy.optimize import least_squares
+
+from comum import CORES_GRAVIDADE, FIGURAS, ORDEM_GRAVIDADE, TABELAS, TEXTO, estilo, ler_limpa
+
+R_TERRA = 6371.0
+
+
+def haversine(lat1, lng1, lat2, lng2):
+    p1, p2 = np.radians(lat1), np.radians(lat2)
+    dphi, dl = p2 - p1, np.radians(lng2 - lng1)
+    a = np.sin(dphi / 2) ** 2 + np.cos(p1) * np.cos(p2) * np.sin(dl / 2) ** 2
+    return 2 * R_TERRA * np.arcsin(np.sqrt(a))
+
+
+def estimar_bases(df):
+    linhas = []
+    for base, g in df[~df["fora_area"]].dropna(subset=["lat", "lng", "km_base_ocorr"]).groupby("base"):
+        g = g.drop_duplicates(["chamado"])
+        x0 = [g["lat"].median(), g["lng"].median()]
+        res = least_squares(lambda p: haversine(p[0], p[1], g["lat"].values, g["lng"].values)
+                            - g["km_base_ocorr"].values, x0, loss="soft_l1", f_scale=0.2)
+        erro = np.median(np.abs(res.fun))
+        linhas.append({"base": base, "endereco": g["Endereço da base"].iloc[0] if "Endereço da base" in g else "",
+                       "lat": round(res.x[0], 5), "lng": round(res.x[1], 5),
+                       "erro_mediano_km": round(erro, 3), "n_obs": len(g)})
+    return pd.DataFrame(linhas)
+
+
+def mapa(df, bases):
+    v = df[~df["fora_area"]].drop_duplicates("chamado")
+    fig, ax = plt.subplots(figsize=(7, 6.2))
+    for g in ORDEM_GRAVIDADE[::-1]:
+        s = v[v["gravidade"] == g]
+        # coordenadas arredondadas a ~100 m: pequeno jitter só para visualização
+        jit = np.random.default_rng(0).normal(0, 0.0004, (len(s), 2))
+        ax.scatter(s["lng"] + jit[:, 1], s["lat"] + jit[:, 0], s=22, color=CORES_GRAVIDADE[g],
+                   alpha=0.75, edgecolor="white", linewidth=0.6, label=f"Gravidade {g.lower()} ({len(s)})", zorder=3)
+    ax.scatter(bases["lng"], bases["lat"], marker="s", s=110, color=TEXTO, edgecolor="white",
+               linewidth=1.5, zorder=5, label="Base (posição estimada)")
+    for _, b in bases.iterrows():
+        ax.annotate(b["base"], (b["lng"], b["lat"]), xytext=(7, 7), textcoords="offset points",
+                    fontsize=9, fontweight="bold", color=TEXTO, zorder=6)
+    try:
+        import contextily as cx
+        cx.add_basemap(ax, crs="EPSG:4326", source=cx.providers.CartoDB.Positron, attribution_size=6)
+    except Exception as e:  # sem acesso à internet: mapa sem fundo
+        print("Mapa de fundo indisponível:", type(e).__name__)
+    ax.set_xlabel("Longitude")
+    ax.set_ylabel("Latitude")
+    ax.set_aspect(1 / np.cos(np.radians(-23.55)))
+    h, l = ax.get_legend_handles_labels()
+    ordem = [3, 2, 1, 0, 4]  # gravidade alta primeiro, base por último
+    ax.legend([h[i] for i in ordem], [l[i] for i in ordem], loc="lower left", fontsize=8,
+              frameon=True, facecolor="white", framealpha=0.9)
+    lo, hi = v["lng"].quantile([0.01, 0.99]), v["lat"].quantile([0.01, 0.99])
+    ax.set_xlim(lo.iloc[0] - 0.01, lo.iloc[1] + 0.01)
+    ax.set_ylim(hi.iloc[0] - 0.01, hi.iloc[1] + 0.01)
+    fig.tight_layout()
+    fig.savefig(FIGURAS / "fig_mapa_ocorrencias.png")
+    plt.close(fig)
+
+
+def main():
+    estilo()
+    df = ler_limpa()
+    bases = estimar_bases(df)
+    enderecos = {"Higienópolis": "Rua Doutor Cândido Espinheira, 155, Perdizes",
+                 "Itaim": "Rua Ofélia, Pinheiros",
+                 "Jardins": "Rua Padre João Manuel, 727, Cerqueira César"}
+    bases["endereco"] = bases["base"].map(enderecos)
+    bases.to_csv(TABELAS / "bases_estimadas.csv", index=False)
+    print(bases.to_string(index=False))
+    mapa(df, bases)
+
+
+if __name__ == "__main__":
+    main()
