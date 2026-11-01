@@ -1,11 +1,11 @@
 # Referências verificadas (TF1)
 
 Todas conferidas em 01/11/2026 em bases bibliográficas (RePEc/IDEAS, INFORMS, PubMed/PMC, editoras)
-ou no próprio PDF. Os dois documentos de Andrade estão no Project "TCC Poli".
+ou no próprio PDF. Os artigos indicados pelo orientador ficam em artigos/ (só local, não versionado). Os dois documentos de Andrade estão no Project "TCC Poli".
 
 | Referência | DOI / link | Papel no trabalho |
 |---|---|---|
-| Andrade (2012), dissertação Poli-USP | arquivo no Project | Contexto SAMU-SP, base do artigo abaixo |
+| Andrade (2012), dissertação Poli-USP | arquivo no Project | p. 163: triagem do SAMU-SP não distingue USB/USA (lacuna); p. 79-80: despacho pelo mais próximo |
 | Andrade e Cunha (2015), ITOR 22:473-501 | 10.1111/itor.12160 | Principal referência nacional; SAMU-SP; tempos de ocupação |
 | Bandara, Mayorga e McLay (2012), IJOR 15(2):195-214 | 10.1504/IJOR.2012.048867 | Despacho por prioridade via MDP, métrica de sobrevida |
 | Bandara, Mayorga e McLay (2014), JORS 65(4):572-587 | 10.1057/jors.2013.95 | Simulação: mais próximo nem sempre é ótimo |
@@ -16,7 +16,10 @@ ou no próprio PDF. Os dois documentos de Andrade estão no Project "TCC Poli".
 | Church e ReVelle (1974), Papers RSA 32:101-118 | (citado via Andrade e Cunha 2015) | MCLP |
 | Daskin (1983), Transportation Science 17(1):48-70 | (citado via Andrade e Cunha 2015) | MEXCLP |
 | De Maio et al. (2003), Ann Emerg Med 42(2):242-250 | 10.1067/mem.2003.266 | Função de sobrevida em PCR |
+| Iannoni e Morabito (2008), Produção 18(1):47-63 | indicado pelo orientador (pasta artigos/) | Hipercubo + algoritmo genético; backup parcial e despachos múltiplos |
 | Iannoni e Morabito (2007), TR-E 43(6):755-771 | (citado via Andrade e Cunha 2015) | Hipercubo com despacho múltiplo |
+| Costa, Cunha e Arbex (2021), CSTP 9:1707-1714 | 10.1016/j.cstp.2021.06.019 | Arquitetura do simulador (4 módulos); desenho de cenários |
+| Masteguim e Cunha (2022), Sustainability 14:8521 | 10.3390/su14148521 | Enquadramento "em que condições" com cenários |
 | Jagtenberg, Bhulai e van der Mei (2017), HCMS 20(4):517-531 | 10.1007/s10729-016-9368-0 | Mais próximo não é sempre ótimo (-18% atrasos) |
 | Larson (1974), C&OR 1(1):67-95 | 10.1016/0305-0548(74)90076-8 | Modelo hipercubo |
 | Marianov e ReVelle (1996), EJOR 93:110-120 | 10.1016/0377-2217(95)00182-4 | Q-MALP |

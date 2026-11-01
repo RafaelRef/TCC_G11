@@ -8,3 +8,6 @@ __pycache__/
 *.pyc
 .DS_Store
 ~$*.docx
+
+# PDFs de artigos (direitos autorais): só local
+artigos/
