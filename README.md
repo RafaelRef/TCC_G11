@@ -22,6 +22,7 @@ analise/           scripts Python (rodar na ordem numérica)
   05_tempo_viagem.py   regressão distância x tempo de deslocamento
   06_fluxograma.py     figura das etapas do trabalho
   07_densidade.py      densidade de prioridade alta por zona e faixa horária; VTR 01 ocupada
+  08_custo_reserva.py  custo empírico da falta da viatura local (Δg e Δn) e papel da VIR
 dados/brutos/      planilha original (NÃO versionada)
 dados/processados/ base limpa (NÃO versionada)
 figuras/           figuras do relatório (PNG, 300 dpi)
@@ -42,6 +43,7 @@ python analise/04_usa_conflitos.py
 python analise/05_tempo_viagem.py
 python analise/06_fluxograma.py
 python analise/07_densidade.py
+python analise/08_custo_reserva.py
 ```
 
 ## Sobre os dados
