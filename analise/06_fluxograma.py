@@ -6,13 +6,13 @@ from comum import AZUL, FIGURAS, LARANJA, TEXTO, TEXTO_2, estilo
 
 ETAPAS = [
     ("1. Revisão\nbibliográfica", "despacho, localização,\nmétricas de sobrevida", "TF1"),
-    ("2. Tratamento\ndos dados", "regras R1 a R5,\nclassificação\nde gravidade", "TF1"),
-    ("3. Análise\nexploratória", "demanda, tempos,\nconflitos da USA", "TF1"),
-    ("4. Parametrização", "chegadas, tempos de\nviagem e de serviço", "TF2"),
-    ("5. Simulação de\neventos discretos", "modelo genérico\nUSA + USB (SimPy)", "TF2"),
+    ("2. Tratamento\ndos dados", "regras R1 a R5,\nclassificação\nde prioridade", "TF1"),
+    ("3. Análise\nexploratória", "demanda, tempos,\ndensidade e\ndisponibilidade", "TF1"),
+    ("4. Parametrização", "chegadas por zona,\ntempos de viagem\ne de serviço", "TF2"),
+    ("5. Simulação de\neventos discretos", "modelo genérico\nmultizona (SimPy)", "TF2"),
     ("6. Validação", "política atual x\ndados observados", "TF2"),
-    ("7. Experimentos", "políticas x limiar X\nx cenários de carga", "TF2"),
-    ("8. Recomendações", "limiar X* e regras\nde despacho", "TF2"),
+    ("7. Experimentos", "políticas x\ndensidade x cenários", "TF2"),
+    ("8. Recomendações", "densidade-limiar δ*\ne regras de despacho", "TF2"),
 ]
 
 
