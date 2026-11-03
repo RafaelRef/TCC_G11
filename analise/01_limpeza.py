@@ -16,7 +16,7 @@ Regras de limpeza (provisórias, a discutir com o orientador):
 """
 import pandas as pd
 
-from comum import ARQUIVO_BRUTO, PROCESSADOS, TABELAS, gravidade
+from comum import ARQUIVO_BRUTO, BASES_CONHECIDAS, PROCESSADOS, TABELAS, gravidade, haversine
 
 RENOMEAR = {
     "Nº chamado": "chamado", "Data/hora do chamado": "dt_chamado",
@@ -57,6 +57,13 @@ def main():
     df["dia_semana"] = df["dt_chamado"].dt.dayofweek  # 0 = segunda
     df["mes"] = df["dt_chamado"].dt.to_period("M").astype(str)
 
+    # Distância à base: recalculada para as bases com posição conhecida (comum.py)
+    df["km_base_ocorr_sistema"] = df["km_base_ocorr"]
+    corrigida = df["base"].isin(BASES_CONHECIDAS.keys()) & df["lat"].notna()
+    for b, pos in BASES_CONHECIDAS.items():
+        m = corrigida & (df["base"] == b)
+        df.loc[m, "km_base_ocorr"] = haversine(pos["lat"], pos["lng"], df.loc[m, "lat"], df.loc[m, "lng"]).round(2)
+
     # R2
     df["fora_area"] = (df["cidade"] != "São Paulo") | (df["km_base_ocorr"] > 30)
 
@@ -82,6 +89,7 @@ def main():
         ("Preparo > 30 min (R4)", int((df["min_preparo"] > 30).sum())),
         ("Acionamentos com tempo de resposta válido", int(df["ok_resposta"].sum())),
         ("Acionamentos com tempo de ocupação válido (R5)", int(df["ok_ocupacao"].sum())),
+        ("Acionamentos com distância à base recalculada (base Itaim no Clube Hebraica)", int(corrigida.sum())),
         ("Acionamentos com distância por rota (GPS, a partir de set/2026)", int(df["km_rota_inicial"].notna().sum())),
     ]
     q = pd.DataFrame(linhas, columns=["indicador", "valor"])

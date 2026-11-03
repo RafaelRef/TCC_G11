@@ -2,8 +2,11 @@
 
 As coordenadas das bases não constam da planilha (só o endereço). Elas são
 estimadas por trilateração: para cada base, minimiza-se o erro entre a
-distância em linha reta informada (base -> ocorrência) e a distância
-haversine calculada até as coordenadas das ocorrências.
+distância em linha reta informada pelo sistema (base -> ocorrência) e a
+distância haversine calculada até as coordenadas das ocorrências. A
+trilateração recupera o ponto cadastrado no sistema; para as bases com
+posição conhecida (comum.BASES_CONHECIDAS), esse ponto é substituído pela
+posição real e o desvio entre os dois é registrado.
 
 Saídas: tabelas/bases_estimadas.csv, figuras/fig_mapa_ocorrencias.png
 """
@@ -12,29 +15,27 @@ import numpy as np
 import pandas as pd
 from scipy.optimize import least_squares
 
-from comum import CORES_GRAVIDADE, FIGURAS, ORDEM_GRAVIDADE, TABELAS, TEXTO, estilo, ler_limpa
+from comum import (BASES_CONHECIDAS, CORES_GRAVIDADE, FIGURAS, ORDEM_GRAVIDADE, TABELAS, TEXTO, estilo,
+                   haversine, ler_limpa)
 
-R_TERRA = 6371.0
-
-
-def haversine(lat1, lng1, lat2, lng2):
-    p1, p2 = np.radians(lat1), np.radians(lat2)
-    dphi, dl = p2 - p1, np.radians(lng2 - lng1)
-    a = np.sin(dphi / 2) ** 2 + np.cos(p1) * np.cos(p2) * np.sin(dl / 2) ** 2
-    return 2 * R_TERRA * np.arcsin(np.sqrt(a))
 
 
 def estimar_bases(df):
     linhas = []
-    for base, g in df[~df["fora_area"]].dropna(subset=["lat", "lng", "km_base_ocorr"]).groupby("base"):
+    for base, g in df[~df["fora_area"]].dropna(subset=["lat", "lng", "km_base_ocorr_sistema"]).groupby("base"):
         g = g.drop_duplicates(["chamado"])
         x0 = [g["lat"].median(), g["lng"].median()]
         res = least_squares(lambda p: haversine(p[0], p[1], g["lat"].values, g["lng"].values)
-                            - g["km_base_ocorr"].values, x0, loss="soft_l1", f_scale=0.2)
+                            - g["km_base_ocorr_sistema"].values, x0, loss="soft_l1", f_scale=0.2)
         erro = np.median(np.abs(res.fun))
         linhas.append({"base": base, "endereco": g["Endereço da base"].iloc[0] if "Endereço da base" in g else "",
                        "lat": round(res.x[0], 5), "lng": round(res.x[1], 5),
-                       "erro_mediano_km": round(erro, 3), "n_obs": len(g)})
+                       "erro_mediano_km": round(erro, 3), "n_obs": len(g), "fonte": "trilateração",
+                       "desvio_sistema_km": 0.0})
+        if base in BASES_CONHECIDAS:
+            pos = BASES_CONHECIDAS[base]
+            linhas[-1].update(lat=pos["lat"], lng=pos["lng"], fonte="informada pelo grupo",
+                              desvio_sistema_km=round(float(haversine(res.x[0], res.x[1], pos["lat"], pos["lng"])), 2))
     return pd.DataFrame(linhas)
 
 
@@ -48,7 +49,7 @@ def mapa(df, bases):
         ax.scatter(s["lng"] + jit[:, 1], s["lat"] + jit[:, 0], s=22, color=CORES_GRAVIDADE[g],
                    alpha=0.75, edgecolor="white", linewidth=0.6, label=f"Prioridade {g.lower()} ({len(s)})", zorder=3)
     ax.scatter(bases["lng"], bases["lat"], marker="s", s=110, color=TEXTO, edgecolor="white",
-               linewidth=1.5, zorder=5, label="Base (posição estimada)")
+               linewidth=1.5, zorder=5, label="Base")
     for _, b in bases.iterrows():
         ax.annotate(b["base"], (b["lng"], b["lat"]), xytext=(7, 7), textcoords="offset points",
                     fontsize=9, fontweight="bold", color=TEXTO, zorder=6)
@@ -78,7 +79,7 @@ def main():
     df = ler_limpa()
     bases = estimar_bases(df)
     enderecos = {"Higienópolis": "Rua Doutor Cândido Espinheira, 155, Perdizes",
-                 "Itaim": "Rua Ofélia, Pinheiros",
+                 "Itaim": BASES_CONHECIDAS["Itaim"]["endereco"],
                  "Jardins": "Rua Padre João Manuel, 727, Cerqueira César"}
     bases["endereco"] = bases["base"].map(enderecos)
     bases.to_csv(TABELAS / "bases_estimadas.csv", index=False)

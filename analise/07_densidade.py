@@ -69,9 +69,11 @@ def main():
     tz.to_csv(TABELAS / "densidade_zonas.csv", index=False)
     print(tz.to_string(index=False), f"\nperíodo {horas:.0f} h; taxa-limiar (w={W}) {lam_lim:.4f}/h")
 
-    # malha regular de 1 km²: células mais densas em chamados de prioridade alta
+    # malha regular de 1 km²: células mais densas em chamados de prioridade alta;
+    # malha ancorada na base de Higienópolis (centro de uma célula), independente das demais bases
     a = (c["gravidade"] == "Alta").values
-    cel = np.floor(xy).astype(int)
+    hig = bx[list(bases["base"]).index("Higienópolis")]
+    cel = np.floor(xy - hig + 0.5).astype(int)
     m = pd.DataFrame({"cx": cel[:, 0], "cy": cel[:, 1], "alta": a, "todos": 1}).groupby(["cx", "cy"]).sum()
     m = m.sort_values(["alta", "todos"], ascending=False).head(5).reset_index()
     m["dens_alta_km2_dia"] = (m["alta"] / dias).round(3)
