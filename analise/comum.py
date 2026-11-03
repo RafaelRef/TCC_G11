@@ -30,36 +30,41 @@ TEXTO, TEXTO_2 = "#0b0b0b", "#52514e"
 # Proxy construído a partir da queixa principal registrada na triagem.
 # Deve ser validada com profissionais de APH antes do TF2.
 # ---------------------------------------------------------------------------
+# Três classes de prioridade definidas pelo grupo (nov/2026). As queixas
+# marcadas com "# grupo" foram listadas explicitamente pelo grupo; as demais
+# foram encaixadas por analogia e precisam de confirmação.
 ALTA = {
-    "PARADA CARDIO RESPIRATÓRIA (PCR)", "AVC", "ENGASGO", "DOR TORACICA",
-    "DISPNEIA", "DESCONFORTO RESPIRATÓRIO", "QUEDA DE SATURAÇÃO",
-    "REBAIXAMENTO DO NIVEL DE CONSCIENCIA", "PERDA DE CONSCIÊNCIA",
-    "CONVULSÃO", "HEMORRAGIA", "INTOXICAÇÃO EXÓGENA", "ENVENENAMENTO",
+    "PARADA CARDIO RESPIRATÓRIA (PCR)", "HEMORRAGIA",
+    "REBAIXAMENTO DO NIVEL DE CONSCIENCIA", "DESMAIO", "SÍNCOPE",  # grupo
+    "PERDA DE CONSCIÊNCIA", "CONVULSÃO", "ENGASGO",
     "TCE - TRAUMATISMO CRANIOENCEFALICO", "QUEDA DE ALTURA",
     "ACIDENTE COM AUTOMÓVEL", "ATROPELAMENTO",
 }
-MODERADA = {
-    "DESMAIO", "SÍNCOPE", "MAL SUBITO", "TAQUICARDIA", "CRISE HIPERTENSIVA",
-    "HIPOTENSÃO", "HIPOGLICEMIA", "HIPERGLICEMIA", "DOR ABDOMINAL",
-    "FRATURA DE BACIA/PELVE", "FRATURA DE MEMBRO SUPERIOR", "QUEIMADURA",
+MEDIA = {
+    "AVC", "DISPNEIA", "DOR TORACICA", "MAL SUBITO", "CRISE HIPERTENSIVA",
+    "QUEDA DA PRÓPRIA ALTURA",  # grupo
+    "DESCONFORTO RESPIRATÓRIO", "QUEDA DE SATURAÇÃO", "INTOXICAÇÃO EXÓGENA",
+    "ENVENENAMENTO", "TAQUICARDIA", "HIPOTENSÃO", "HIPOGLICEMIA",
+    "HIPERGLICEMIA", "DOR ABDOMINAL", "FRATURA DE BACIA/PELVE",
+    "FRATURA DE MEMBRO SUPERIOR", "QUEIMADURA",
 }
 BAIXA = {
-    "MAL ESTAR", "QUEDA DA PRÓPRIA ALTURA", "DESIDRATAÇAO", "HIPERTEMIA",
-    "ALCOOLISMO", "INSUF RENAL",
+    "OUTROS", "OUTROS SHABAT", "MAL ESTAR", "DESIDRATAÇAO",  # grupo
+    "HIPERTEMIA", "ALCOOLISMO", "INSUF RENAL",
 }
-INDETERMINADA = {"OUTROS", "OUTROS SHABAT"}
-ORDEM_GRAVIDADE = ["Alta", "Moderada", "Baixa", "Indeterminada"]
-CORES_GRAVIDADE = {"Alta": LARANJA, "Moderada": AMARELO, "Baixa": AZUL, "Indeterminada": CINZA}
+ORDEM_GRAVIDADE = ["Alta", "Média", "Baixa"]
+CORES_GRAVIDADE = {"Alta": LARANJA, "Média": AMARELO, "Baixa": AZUL}
 
 
 def gravidade(queixa: str) -> str:
+    """Classe de prioridade presumida a partir da queixa principal."""
     if queixa in ALTA:
         return "Alta"
-    if queixa in MODERADA:
-        return "Moderada"
+    if queixa in MEDIA:
+        return "Média"
     if queixa in BAIXA:
         return "Baixa"
-    return "Indeterminada"
+    return "Baixa"  # queixas genéricas ou não listadas
 
 
 def estilo():

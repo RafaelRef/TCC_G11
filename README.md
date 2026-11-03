@@ -1,11 +1,11 @@
-# TCC G11: despacho de unidades de suporte básico e avançado no APH
+# TCC G11: reserva de ambulâncias em áreas de alta densidade de ocorrências
 
 Trabalho de Formatura em Engenharia Civil, Escola Politécnica da USP (2026).
 
-**Pergunta de pesquisa.** Em sistemas de atendimento pré-hospitalar com frota mista de unidades de
-suporte básico (USB) e avançado (USA), em que condições, definidas pela gravidade presumida da
-ocorrência e pela diferença de tempo de resposta entre as unidades disponíveis, é preferível
-despachar uma USB e preservar a USA para ocorrências graves subsequentes?
+**Pergunta de pesquisa.** Em um sistema urbano de atendimento pré-hospitalar com bases em áreas de
+densidade de ocorrências distinta, a partir de que densidade de ocorrências de prioridade alta
+(chamados por km² por hora) vale a pena preservar a viatura da área densa e atender os chamados não
+graves dessa área com uma viatura de uma área menos densa?
 
 Os dados operacionais da Hatzalá São Paulo (jul a out/2026) são usados para **calibrar** um modelo
 genérico de simulação, não para avaliar a operação da Hatzalá.
@@ -14,11 +14,14 @@ genérico de simulação, não para avaliar a operação da Hatzalá.
 
 ```
 analise/           scripts Python (rodar na ordem numérica)
-  comum.py         caminhos, paleta, classificação de gravidade
+  comum.py         caminhos, paleta, classificação de prioridade (alta/média/baixa)
   01_limpeza.py    padronização e regras de qualidade (R1 a R5)
   02_descritiva.py demanda, gravidade e tempos de atendimento
   03_mapa.py       trilateração das bases e mapa das ocorrências
   04_usa_conflitos.py  uso da USA, conflitos e Erlang B
+  05_tempo_viagem.py   regressão distância x tempo de deslocamento
+  06_fluxograma.py     figura das etapas do trabalho
+  07_densidade.py      densidade de prioridade alta por zona e faixa horária; VTR 01 ocupada
 dados/brutos/      planilha original (NÃO versionada)
 dados/processados/ base limpa (NÃO versionada)
 figuras/           figuras do relatório (PNG, 300 dpi)
@@ -36,6 +39,9 @@ python analise/01_limpeza.py
 python analise/02_descritiva.py
 python analise/03_mapa.py
 python analise/04_usa_conflitos.py
+python analise/05_tempo_viagem.py
+python analise/06_fluxograma.py
+python analise/07_densidade.py
 ```
 
 ## Sobre os dados
