@@ -21,13 +21,17 @@ for p in (PROCESSADOS, FIGURAS, TABELAS):
 
 ARQUIVO_BRUTO = BRUTOS / "deslocamentos-vtr-hatzala-sp.xlsx"
 
-# Bases com posição conhecida. A distância base->ocorrência da planilha é calculada
-# pelo sistema a partir do ponto cadastrado de cada base; para a base "Itaim" esse
-# ponto é a Rua Ofélia (cerca de 1 km da base real). A base fica no Clube Hebraica
-# (posição informada pelo grupo, nov/2026), e as distâncias são recalculadas a partir dela.
+# Posição real das bases, informada pelo grupo (nov/2026). A distância base->ocorrência
+# da planilha é calculada pelo sistema a partir do ponto cadastrado de cada base; para a
+# base "Itaim" esse ponto é a Rua Ofélia, cerca de 1 km da base real (Clube Hebraica).
+# As distâncias são recalculadas a partir das posições abaixo.
 BASES_CONHECIDAS = {
+    "Higienópolis": {"lat": -23.53411, "lng": -46.66143,
+                     "endereco": "Rua Doutor Cândido Espinheira, 155, Perdizes"},
     "Itaim": {"lat": -23.57954, "lng": -46.69101,
               "endereco": "Rua Angelina Maffei Vita, 450 (Clube Hebraica), Pinheiros"},
+    "Jardins": {"lat": -23.56373, "lng": -46.66420,
+                "endereco": "Rua Padre João Manuel, 727, Cerqueira César"},
 }
 
 R_TERRA = 6371.0
