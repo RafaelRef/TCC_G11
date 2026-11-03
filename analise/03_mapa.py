@@ -78,10 +78,7 @@ def main():
     estilo()
     df = ler_limpa()
     bases = estimar_bases(df)
-    enderecos = {"Higienópolis": "Rua Doutor Cândido Espinheira, 155, Perdizes",
-                 "Itaim": BASES_CONHECIDAS["Itaim"]["endereco"],
-                 "Jardins": "Rua Padre João Manuel, 727, Cerqueira César"}
-    bases["endereco"] = bases["base"].map(enderecos)
+    bases["endereco"] = bases["base"].map(lambda b: BASES_CONHECIDAS.get(b, {}).get("endereco", ""))
     bases.to_csv(TABELAS / "bases_estimadas.csv", index=False)
     print(bases.to_string(index=False))
     mapa(df, bases)

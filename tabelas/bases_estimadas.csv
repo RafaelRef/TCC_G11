@@ -1,4 +1,4 @@
 base,endereco,lat,lng,erro_mediano_km,n_obs,fonte,desvio_sistema_km
-Higienópolis,"Rua Doutor Cândido Espinheira, 155, Perdizes",-23.53431,-46.66169,0.023,276,trilateração,0.0
+Higienópolis,"Rua Doutor Cândido Espinheira, 155, Perdizes",-23.53411,-46.66143,0.023,276,informada pelo grupo,0.04
 Itaim,"Rua Angelina Maffei Vita, 450 (Clube Hebraica), Pinheiros",-23.57954,-46.69101,0.02,109,informada pelo grupo,1.02
-Jardins,"Rua Padre João Manuel, 727, Cerqueira César",-23.56392,-46.66414,0.023,95,trilateração,0.0
+Jardins,"Rua Padre João Manuel, 727, Cerqueira César",-23.56373,-46.6642,0.023,95,informada pelo grupo,0.02

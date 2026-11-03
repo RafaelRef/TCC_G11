@@ -89,7 +89,7 @@ def main():
         ("Preparo > 30 min (R4)", int((df["min_preparo"] > 30).sum())),
         ("Acionamentos com tempo de resposta válido", int(df["ok_resposta"].sum())),
         ("Acionamentos com tempo de ocupação válido (R5)", int(df["ok_ocupacao"].sum())),
-        ("Acionamentos com distância à base recalculada (base Itaim no Clube Hebraica)", int(corrigida.sum())),
+        ("Acionamentos com distância à base recalculada (posição real das bases)", int(corrigida.sum())),
         ("Acionamentos com distância por rota (GPS, a partir de set/2026)", int(df["km_rota_inicial"].notna().sum())),
     ]
     q = pd.DataFrame(linhas, columns=["indicador", "valor"])
