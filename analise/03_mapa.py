@@ -46,7 +46,7 @@ def mapa(df, bases):
         # coordenadas arredondadas a ~100 m: pequeno jitter só para visualização
         jit = np.random.default_rng(0).normal(0, 0.0004, (len(s), 2))
         ax.scatter(s["lng"] + jit[:, 1], s["lat"] + jit[:, 0], s=22, color=CORES_GRAVIDADE[g],
-                   alpha=0.75, edgecolor="white", linewidth=0.6, label=f"Gravidade {g.lower()} ({len(s)})", zorder=3)
+                   alpha=0.75, edgecolor="white", linewidth=0.6, label=f"Prioridade {g.lower()} ({len(s)})", zorder=3)
     ax.scatter(bases["lng"], bases["lat"], marker="s", s=110, color=TEXTO, edgecolor="white",
                linewidth=1.5, zorder=5, label="Base (posição estimada)")
     for _, b in bases.iterrows():
@@ -61,7 +61,8 @@ def mapa(df, bases):
     ax.set_ylabel("Latitude")
     ax.set_aspect(1 / np.cos(np.radians(-23.55)))
     h, l = ax.get_legend_handles_labels()
-    ordem = [3, 2, 1, 0, 4]  # gravidade alta primeiro, base por último
+    n = len(ORDEM_GRAVIDADE)
+    ordem = list(range(n))[::-1] + [n]  # prioridade alta primeiro, base por último
     ax.legend([h[i] for i in ordem], [l[i] for i in ordem], loc="lower left", fontsize=8,
               frameon=True, facecolor="white", framealpha=0.9)
     lo, hi = v["lng"].quantile([0.01, 0.99]), v["lat"].quantile([0.01, 0.99])

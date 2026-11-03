@@ -19,6 +19,9 @@ analise/           scripts Python (rodar na ordem numérica)
   02_descritiva.py demanda, gravidade e tempos de atendimento
   03_mapa.py       trilateração das bases e mapa das ocorrências
   04_usa_conflitos.py  uso da USA, conflitos e Erlang B
+  05_tempo_viagem.py   regressão distância x tempo de deslocamento
+  06_fluxograma.py     figura das etapas do trabalho
+  07_densidade.py      densidade de prioridade alta por zona e faixa horária; VTR 01 ocupada
 dados/brutos/      planilha original (NÃO versionada)
 dados/processados/ base limpa (NÃO versionada)
 figuras/           figuras do relatório (PNG, 300 dpi)
@@ -36,6 +39,9 @@ python analise/01_limpeza.py
 python analise/02_descritiva.py
 python analise/03_mapa.py
 python analise/04_usa_conflitos.py
+python analise/05_tempo_viagem.py
+python analise/06_fluxograma.py
+python analise/07_densidade.py
 ```
 
 ## Sobre os dados

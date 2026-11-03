@@ -1,0 +1,13 @@
+zona,faixa,alta,alta_por_h,dens_alta_km2_h,p_grave_na_ocupacao_pct,razao_limiar_w10
+Higienópolis,0 h-8 h,11,0.0137,0.0008,1.6,0.16
+Higienópolis,8 h-14 h,31,0.0514,0.0029,6.1,0.59
+Higienópolis,14 h-20 h,16,0.0265,0.0015,3.2,0.31
+Higienópolis,20 h-24 h,10,0.0249,0.0014,3.0,0.29
+Itaim,0 h-8 h,2,0.0025,0.0003,0.3,0.03
+Itaim,8 h-14 h,4,0.0066,0.0007,0.8,0.08
+Itaim,14 h-20 h,2,0.0033,0.0004,0.4,0.04
+Itaim,20 h-24 h,0,0.0,0.0,0.0,0.0
+Jardins,0 h-8 h,0,0.0,0.0,0.0,0.0
+Jardins,8 h-14 h,5,0.0083,0.0006,1.0,0.1
+Jardins,14 h-20 h,10,0.0166,0.0011,2.0,0.19
+Jardins,20 h-24 h,1,0.0025,0.0002,0.3,0.03
