@@ -5,6 +5,7 @@ Caminhos, paleta de cores, classificação de gravidade e leitura da base.
 from pathlib import Path
 
 import matplotlib
+import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 
@@ -19,6 +20,25 @@ for p in (PROCESSADOS, FIGURAS, TABELAS):
     p.mkdir(parents=True, exist_ok=True)
 
 ARQUIVO_BRUTO = BRUTOS / "deslocamentos-vtr-hatzala-sp.xlsx"
+
+# Bases com posição conhecida. A distância base->ocorrência da planilha é calculada
+# pelo sistema a partir do ponto cadastrado de cada base; para a base "Itaim" esse
+# ponto é a Rua Ofélia (cerca de 1 km da base real). A base fica no Clube Hebraica
+# (posição informada pelo grupo, nov/2026), e as distâncias são recalculadas a partir dela.
+BASES_CONHECIDAS = {
+    "Itaim": {"lat": -23.57954, "lng": -46.69101,
+              "endereco": "Rua Angelina Maffei Vita, 450 (Clube Hebraica), Pinheiros"},
+}
+
+R_TERRA = 6371.0
+
+
+def haversine(lat1, lng1, lat2, lng2):
+    """Distância em linha reta (km) entre pontos dados em graus."""
+    p1, p2 = np.radians(lat1), np.radians(lat2)
+    dphi, dl = p2 - p1, np.radians(np.asarray(lng2) - np.asarray(lng1))
+    a = np.sin(dphi / 2) ** 2 + np.cos(p1) * np.cos(p2) * np.sin(dl / 2) ** 2
+    return 2 * R_TERRA * np.arcsin(np.sqrt(a))
 
 # Paleta categórica (ordem fixa) e tintas de texto
 AZUL, LARANJA, AQUA, AMARELO = "#2a78d6", "#eb6834", "#1baf7a", "#eda100"
