@@ -50,31 +50,31 @@ CINZA = "#9a9993"
 TEXTO, TEXTO_2 = "#0b0b0b", "#52514e"
 
 # ---------------------------------------------------------------------------
-# Classificação de gravidade presumida (PROVISÓRIA)
+# Classificação de prioridade presumida
 # Proxy construído a partir da queixa principal registrada na triagem.
-# Deve ser validada com profissionais de APH antes do TF2.
+# Ainda deve ser validada com profissionais de APH no TF2.
 # ---------------------------------------------------------------------------
-# Três classes de prioridade definidas pelo grupo (nov/2026). As queixas
-# marcadas com "# grupo" foram listadas explicitamente pelo grupo; as demais
-# foram encaixadas por analogia e precisam de confirmação.
+# Três classes de prioridade definidas pelo grupo (nov/2026). As queixas marcadas
+# com "# grupo" foram listadas na definição inicial; as demais foram classificadas
+# pelo grupo depois, uma a uma (8/11/2026).
 ALTA = {
     "PARADA CARDIO RESPIRATÓRIA (PCR)", "HEMORRAGIA",
     "REBAIXAMENTO DO NIVEL DE CONSCIENCIA", "DESMAIO", "SÍNCOPE",  # grupo
-    "PERDA DE CONSCIÊNCIA", "CONVULSÃO", "ENGASGO",
-    "TCE - TRAUMATISMO CRANIOENCEFALICO", "QUEDA DE ALTURA",
-    "ACIDENTE COM AUTOMÓVEL", "ATROPELAMENTO",
+    "PERDA DE CONSCIÊNCIA", "CONVULSÃO", "ENGASGO", "QUEDA DE ALTURA",
+    "ATROPELAMENTO", "INTOXICAÇÃO EXÓGENA", "ENVENENAMENTO",
+    "FRATURA DE BACIA/PELVE", "HIPOGLICEMIA",
 }
 MEDIA = {
     "AVC", "DISPNEIA", "DOR TORACICA", "MAL SUBITO", "CRISE HIPERTENSIVA",
     "QUEDA DA PRÓPRIA ALTURA",  # grupo
-    "DESCONFORTO RESPIRATÓRIO", "QUEDA DE SATURAÇÃO", "INTOXICAÇÃO EXÓGENA",
-    "ENVENENAMENTO", "TAQUICARDIA", "HIPOTENSÃO", "HIPOGLICEMIA",
-    "HIPERGLICEMIA", "DOR ABDOMINAL", "FRATURA DE BACIA/PELVE",
-    "FRATURA DE MEMBRO SUPERIOR", "QUEIMADURA",
+    "DESCONFORTO RESPIRATÓRIO", "QUEDA DE SATURAÇÃO", "TAQUICARDIA", "HIPOTENSÃO",
+    "TCE - TRAUMATISMO CRANIOENCEFALICO", "ACIDENTE COM AUTOMÓVEL",
+    "FRATURA DE MEMBRO SUPERIOR",
 }
 BAIXA = {
     "OUTROS", "OUTROS SHABAT", "MAL ESTAR", "DESIDRATAÇAO",  # grupo
-    "HIPERTEMIA", "ALCOOLISMO", "INSUF RENAL",
+    "HIPERTEMIA", "ALCOOLISMO", "INSUF RENAL", "DOR ABDOMINAL", "QUEIMADURA",
+    "HIPERGLICEMIA",
 }
 ORDEM_GRAVIDADE = ["Alta", "Média", "Baixa"]
 CORES_GRAVIDADE = {"Alta": LARANJA, "Média": AMARELO, "Baixa": AZUL}
