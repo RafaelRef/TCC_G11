@@ -1,15 +1,15 @@
 grupo,situacao,medida,chamados,n_validos,mediana_min,p25_min,p75_min
-Prioridade alta,VTR 01 livre,primeira chegada (qualquer viatura),57.0,39.0,7.5,5.7,9.4
-Prioridade alta,VTR 01 livre,primeira chegada de USB,57.0,36.0,7.6,5.9,9.7
-Prioridade alta,VTR 01 ocupada,primeira chegada (qualquer viatura),11.0,9.0,16.0,15.3,17.7
-Prioridade alta,VTR 01 ocupada,primeira chegada de USB,11.0,9.0,16.0,15.3,17.7
-Prioridade média e baixa,USB local (VTR 01),resposta da USB,139.0,139.0,6.3,4.5,8.3
-Prioridade média e baixa,USB de outra base,resposta da USB,55.0,55.0,9.7,6.1,15.7
-Estimativas,Δg pela primeira viatura,diferença das medianas,,,8.5,,
-Estimativas,Δg pela primeira USB,diferença das medianas,,,8.4,,
+Prioridade alta,VTR 01 livre,primeira chegada (qualquer viatura),57.0,41.0,6.9,5.2,9.1
+Prioridade alta,VTR 01 livre,primeira chegada de USB,57.0,38.0,7.0,5.5,9.2
+Prioridade alta,VTR 01 ocupada,primeira chegada (qualquer viatura),9.0,8.0,16.5,14.0,18.2
+Prioridade alta,VTR 01 ocupada,primeira chegada de USB,9.0,8.0,16.5,14.9,18.2
+Prioridade média e baixa,USB local (VTR 01),resposta da USB,137.0,137.0,6.3,4.5,8.4
+Prioridade média e baixa,USB de outra base,resposta da USB,56.0,56.0,9.7,6.6,15.7
+Estimativas,Δg pela primeira viatura,diferença das medianas,,,9.6,,
+Estimativas,Δg pela primeira USB,diferença das medianas,,,9.5,,
 Estimativas,Δn,diferença das medianas,,,3.4,,
 Estimativas,Diferença geométrica (base vizinha - local),linha reta a 15 km/h,,305.0,8.7,5.3,10.3
-"Conflitos (prioridade alta, VTR 01 ocupada)",VIR livre,chamados,10.0,,,,
+"Conflitos (prioridade alta, VTR 01 ocupada)",VIR livre,chamados,8.0,,,,
 "Conflitos (prioridade alta, VTR 01 ocupada)",VIR acionada,chamados,7.0,,,,
 "Conflitos (prioridade alta, VTR 01 ocupada)",VIR chegou à cena,chamados,4.0,,,,
 "Conflitos (prioridade alta, VTR 01 ocupada)",VIR foi a primeira a chegar,chamados,1.0,,,,
